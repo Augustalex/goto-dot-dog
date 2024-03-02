@@ -16,5 +16,5 @@ export function getDistance(
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   const d = R * c;
 
-  return Math.round(d * 100) * 10; // meters
+  return Math.round(d * 100) * 10;
 }
