@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" data-name="star filled" viewBox="0 0 24 24">
+    <path fill="none" d="M0 0h24v24H0z" />
+    <path stroke="#f0b482" fill="#f0b482" stroke-miterlimit="10" stroke-width="1.5" d="m12 18-5.88 3.09 1.12-6.54L2.5 9.9l6.57-.95L12 3l2.94 5.96 6.57.95-4.75 4.63 1.12 6.55Z"/>
+</svg>

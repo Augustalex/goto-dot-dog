@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  // Uses connection pooling
+  url       = env("POSTGRES_PRISMA_URL")
+  // Uses direct connection, ⚠️ make sure to keep this to `POSTGRES_URL_NON_POOLING`
+  // or you'll have dangling databases from migrations
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model Place {
+  id               String  @id
+  displayName      String
+  profilePhotoName String?
+  webRating        Float
+  webRatingCount   Int
+  allowsDogs       String
+  servesLunch      String
+  servesDinner     String
+  mapLink          String
+  websiteLink      String?
+  latitude         Float
+  longitude        Float
+  rawData          Json
+
+  @@index([allowsDogs])
+}
