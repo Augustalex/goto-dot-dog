@@ -2,7 +2,10 @@ export function explode(targetSelector: string) {
   const gravity = 0.35; // Acceleration due to gravity
   let elements = document.querySelectorAll(targetSelector); // Select all elements on the page
 
-  elements.forEach((el) => {
+  elements.forEach((element: Element) => {
+    const htmlElement = element as HTMLElement;
+    if (!htmlElement.style) return;
+
     let top = 0;
     let left = 0;
     // Initial velocity with a random upward and sideways direction
@@ -17,13 +20,13 @@ export function explode(targetSelector: string) {
       left += velocityX; // Move element sideways by velocityX
 
       // Apply the position changes
-      el.style.position = "relative";
-      el.style.top = `${top}px`;
-      el.style.left = `${left}px`;
+      htmlElement.style.position = "relative";
+      htmlElement.style.top = `${top}px`;
+      htmlElement.style.left = `${left}px`;
 
       // Continue the animation if it's not time to stop
       if (Date.now() - start < 2500) requestAnimationFrame(fall);
-      else el.remove();
+      else htmlElement.remove();
     }
 
     fall();
