@@ -1,11 +1,12 @@
 "use client";
 
-import { Place } from "@/app/features/near-me/Place";
-import { sortPlaces } from "@/app/features/near-me/sortPlaces";
-import { CoordinatesT, PlaceT } from "@/app/features/near-me/types";
+import { Place } from "@/app/near-me/Place";
+import { sortPlaces } from "@/app/near-me/sortPlaces";
+import { CoordinatesT, PlaceT } from "@/app/near-me/types";
 import { useEffect, useState } from "react";
 
 export function NearMe({ places }: { places: PlaceT[] }) {
+  const [error, setError] = useState("");
   const [ref, setRef] = useState<HTMLDivElement | null>(null);
   useShowMore({ ref, showMore });
   const [currentLocation, setCurrentLocation] = useState<CoordinatesT | null>(
@@ -14,16 +15,32 @@ export function NearMe({ places }: { places: PlaceT[] }) {
   const [limit, setLimit] = useState(10);
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const currentLocation = {
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      };
-      setCurrentLocation(currentLocation);
-    });
+    if (window.location.hostname === "localhost") {
+      setCurrentLocation({ latitude: 59.338998644, longitude: 18.043166494 });
+    } else {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const currentLocation = {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          };
+          setCurrentLocation(currentLocation);
+        },
+        () => {
+          setError("Please allow location data for the app to work");
+        },
+        { timeout: 30000 }
+      );
+    }
   }, []);
 
   if (!currentLocation) return null;
+  if (error)
+    return (
+      <center>
+        <h1>{error}</h1>
+      </center>
+    );
 
   const sortedPlaces = sortPlaces(places, currentLocation);
   const visiblePlaces = sortedPlaces.slice(0, limit);

@@ -1,4 +1,4 @@
-import { prisma } from "../../db/client";
+import { prisma } from "../db/client";
 import { NearMe } from "./NearMe";
 
 export async function NearMeServer() {

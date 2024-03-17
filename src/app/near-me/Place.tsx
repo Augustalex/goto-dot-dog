@@ -1,6 +1,8 @@
-import { getDistance } from "@/app/features/near-me/getDistance";
-import { PlaceT } from "@/app/features/near-me/types";
+import { useFeature } from "@/app/features/features";
+import { getDistance } from "@/app/near-me/getDistance";
+import { PlaceT } from "@/app/near-me/types";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export function Place({
   place,
@@ -9,6 +11,8 @@ export function Place({
   place: PlaceT;
   currentLocation: { latitude: number; longitude: number };
 }) {
+  const placeCommunityFeature = useFeature("place-community");
+  const router = useRouter();
   const score = place.webRating.toFixed(1);
   const {
     displayName,
@@ -104,6 +108,10 @@ export function Place({
   );
 
   function onClick() {
-    window.location.assign(mapLink);
+    if (placeCommunityFeature === "on") {
+      router.push(`/place/${place.id}`);
+    } else {
+      window.location.assign(mapLink);
+    }
   }
 }

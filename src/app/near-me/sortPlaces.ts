@@ -1,5 +1,5 @@
-import { getDistance } from "@/app/features/near-me/getDistance";
-import { CoordinatesT, PlaceT } from "@/app/features/near-me/types";
+import { getDistance } from "@/app/near-me/getDistance";
+import { CoordinatesT, PlaceT } from "@/app/near-me/types";
 
 export function sortPlaces(places: PlaceT[], currentLocation: CoordinatesT) {
   return places.slice().sort((placeA, placeB) => {

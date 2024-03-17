@@ -1,12 +1,12 @@
 import { Shantell_Sans } from "next/font/google";
 import Image from "next/image";
-import { NearMeServer } from "./features/near-me/NearMeServer";
+import { NearMeServer } from "./near-me/NearMeServer";
 
 const headerFont = Shantell_Sans({ subsets: ["latin"], display: "swap" });
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-start p-6 max-w-[512px] mx-auto">
+    <main className="flex min-h-screen flex-col items-center justify-start p-6 max-w-[512px] mx-auto relative">
       <div className="w-full flex flex-col items-center justify-center">
         <Image
           src="/goto.png"
@@ -36,8 +36,8 @@ export default function Home() {
             </svg>
           </span>
         </h2>
+        <NearMeServer />
       </div>
-      <NearMeServer />
     </main>
   );
 }
