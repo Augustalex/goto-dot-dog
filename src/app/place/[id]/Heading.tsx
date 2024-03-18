@@ -34,11 +34,10 @@ export function Heading({ place }: { place: PlaceT }) {
 
   return (
     <>
-      <span className="text-4xl font-medium mb-1">{placeName}</span>
-      <div className="w-full mt-2">
+      <div className="w-full">
         {coverImage && (
           <Image
-            className="w-full h-[180px] rounded-2xl object-cover"
+            className="w-full h-[120px] rounded-xl object-cover"
             src={coverImage}
             alt={displayName}
             width={512}
@@ -46,10 +45,13 @@ export function Heading({ place }: { place: PlaceT }) {
           />
         )}
       </div>
-      <div className="mt-2 flex items-center justify-center w-full">
+      <span className="text-4xl font-medium mb-1 mt-1 text-center">
+        {placeName}
+      </span>
+      <div className="flex items-center justify-center w-full">
         {lunchDinnerText && (
           <div>
-            <span className="opacity-65 text-xl">{lunchDinnerText}</span>
+            <span className="text-gray-500 text-xl">{lunchDinnerText}</span>
           </div>
         )}
         <Score webRating={webRating} webRatingCount={webRatingCount} />
@@ -86,7 +88,7 @@ function Score({
         height={20}
       />
       <span className="">{score}</span>
-      <span className="ml-2 opacity-50 text-m relative tracking-wider">
+      <span className="ml-2 text-gray-500 text-m relative tracking-wider">
         ({ratingCountText})
       </span>
     </div>

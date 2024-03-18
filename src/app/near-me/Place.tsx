@@ -74,28 +74,24 @@ export function Place({
           />
         )}
       </div>
-      <div className="flex items-stretch w-full">
+      <div className="flex items-stretch max-w-full w-full">
         <div className="flex flex-col items-stretch w-full">
           <div className="flex items-center justify-between w-full">
-            <div className="flex items-center">
-              <span className="text-md font-medium max-w-56">{placeName}</span>
-              <div className="relative ml-2 flex-grow flex items-center justify-center font-medium">
-                <Image
-                  className="mr-1 top-[-1px] relative"
-                  src="/star.svg"
-                  alt="star"
-                  width={18}
-                  height={18}
-                />
-                <span className="">{score}</span>
-                <span className="ml-2 opacity-50 text-xs top-[-0px] relative tracking-wider">
-                  ({ratingCountText})
-                </span>
-              </div>
+            <span className="text-md font-medium truncate">{placeName}</span>
+            <div className="relative ml-2 mr-auto flex items-center justify-center font-medium">
+              <Image
+                className="mr-0.5 top-[-1px] relative"
+                src="/star.svg"
+                alt="star"
+                width={18}
+                height={18}
+              />
+              <span>{score}</span>
+              <span className="ml-1.5 opacity-50 text-xs top-[-0px] relative tracking-wider">
+                ({ratingCountText})
+              </span>
             </div>
-            <span className="ml-auto text-md font-medium">
-              {distanceMeters}m
-            </span>
+            <span className="pl-3 text-md font-medium">{distanceMeters}m</span>
           </div>
           {lunchDinnerText && (
             <div>

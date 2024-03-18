@@ -26,5 +26,22 @@ model Place {
   longitude        Float
   rawData          Json
 
+  visits Visit[]
+
   @@index([allowsDogs])
+}
+
+model Visit {
+  id                Int      @id @default(autoincrement())
+  authorId          String
+  authorDisplayName String?
+  authorProfileUrl  String?
+  authorEmail       String?
+  comment           String   @db.VarChar(500)
+  score             Int
+  createdAt         DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt         DateTime @updatedAt @db.Timestamptz(6)
+
+  place   Place  @relation(fields: [placeId], references: [id])
+  placeId String
 }
