@@ -46,8 +46,6 @@ export async function addComment({
     user?.emailAddresses[0]?.emailAddress ||
     null;
 
-  console.log("user", user, "imageUrl", user?.imageUrl);
-
   await prisma.visit.create({
     data: {
       score,

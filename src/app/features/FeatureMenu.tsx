@@ -76,7 +76,6 @@ export function FeatureMenu() {
 
   function setFeatureState(key: string, state: string) {
     updateFeature(key, state);
-    console.log("state", state);
     setLocalState({ ...localState, [key]: state });
   }
 }
