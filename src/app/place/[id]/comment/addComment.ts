@@ -1,6 +1,7 @@
 "use server";
 
 import { auth, currentUser } from "@clerk/nextjs";
+import { revalidatePath } from "next/cache";
 import { prisma } from "../../../db/client";
 
 export async function addComment({
@@ -57,4 +58,6 @@ export async function addComment({
       placeId,
     },
   });
+
+  revalidatePath("/place/[id]");
 }
