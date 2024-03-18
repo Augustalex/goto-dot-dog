@@ -1,5 +1,5 @@
 import { prisma } from "@/app/db/client";
-import { auth, currentUser } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs";
 import Comment from "./Comment";
 
 export default async function CommentPage({
@@ -11,8 +11,6 @@ export default async function CommentPage({
   if (!userId) {
     throw new Error("You must be signed in to add a comment");
   }
-  const user = await currentUser();
-  console.log("user", user);
 
   const place = await prisma.place.findFirstOrThrow({
     where: {
@@ -25,7 +23,6 @@ export default async function CommentPage({
       placeId: id,
     },
   });
-  console.log("existingComment", existingComment);
 
   return <Comment place={place} existingComment={existingComment} />;
 }
